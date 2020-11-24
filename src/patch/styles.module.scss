@@ -1,3 +1,15 @@
 .patch {
   border-radius: 5px;
+  padding: 4px;
+  border-width: 3px;
+  background-color: #444;
+  border-color: #888;
+  border-style: solid;
+  position: absolute;
+  color: #fff;
+  cursor: pointer;
+}
+
+.title {
+  user-select: none;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Patch from '../patch';
 
 import styles from './styles.module.scss';
 
@@ -9,7 +10,7 @@ interface PatchioProps {
 const Patchio = ({ className } : PatchioProps) => {
   return (
     <div className={[styles.patchio, className].join(' ')}>
-      Yo!
+      <Patch name="Multiply" />
     </div>
   );
 }

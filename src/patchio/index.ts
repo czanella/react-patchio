@@ -1,1 +1,1 @@
-export { default } from "./patchio";
+export { default } from './patchio';

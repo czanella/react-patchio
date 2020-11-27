@@ -11,16 +11,17 @@ const Patchio = ({ className }: PatchioProps) => {
   const [patchData] = useState({
     1: {
       name: 'Multiply',
-      x: 0,
-      y: 0,
+      x: 30,
+      y: 20,
     },
   });
 
   const patches = useMemo(() => Object
-    .entries(patchData).map(([key, { name, x, y }]) => (
+    .entries(patchData).map(([key, { name, x, y }], i) => (
       <Patch
         key={key}
         name={name}
+        order={i}
         x={x}
         y={y}
       />

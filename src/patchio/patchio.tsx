@@ -1,4 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, {
+  ReactElement, useCallback, useMemo, useState,
+} from 'react';
 import Patch from '../patch';
 
 import styles from './styles.module.scss';
@@ -15,7 +17,7 @@ interface PatchData {
   },
 }
 
-const Patchio = ({ className }: PatchioProps) => {
+const Patchio = ({ className }: PatchioProps): ReactElement => {
   const [patchData, setPatchData] = useState<PatchData>({
     1: {
       name: 'Multiply',

@@ -25,6 +25,11 @@ const Patchio = ({ className }: PatchioProps): ReactElement => {
       x: 30,
       y: 20,
     },
+    2: {
+      name: 'Add',
+      x: 90,
+      y: 90,
+    },
   });
 
   const onPatchDrag = useCallback((patchId: string, delta: IPosition) => {
@@ -39,7 +44,7 @@ const Patchio = ({ className }: PatchioProps): ReactElement => {
         ...delta,
       },
     });
-  }, []);
+  }, [patchData, setPatchData]);
 
   const patches = useMemo(() => Object
     .entries(patchData).map(([key, { name, x, y }], i) => (

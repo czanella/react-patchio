@@ -1,4 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, {
+  MouseEvent as ReactMouseEvent, ReactElement, useCallback, useState,
+} from 'react';
 import useDrag from '../hooks/useDrag';
 import type IPosition from '../interfaces/IPosition';
 
@@ -7,7 +9,7 @@ import styles from './styles.module.scss';
 interface PatchProps extends IPosition {
   className?: string,
   name: string,
-  onDrag(patchId: string, x: number, y: number): void,
+  onDrag(patchId: string, delta: IPosition): void,
   order: number,
   patchId: string,
 }
@@ -16,17 +18,24 @@ const Patch = ({
   className, name, onDrag, order, patchId, x, y,
 }: PatchProps): ReactElement => {
   const style = { transform: `translate(${x}px, ${y}px` };
+  const [initialPosition, setInitialPosition] = useState<IPosition>({ x, y });
 
   const onDragStart = useDrag(
-    (initialX: number, initialY: number, deltaX: number, deltaY: number) => {
-      onDrag(patchId, initialX + deltaX, initialY + deltaY);
-    },
+    (delta: IPosition) => onDrag(patchId, {
+      x: initialPosition.x + delta.x,
+      y: initialPosition.y + delta.y,
+    }),
   );
+
+  const onMouseDown = useCallback((e: ReactMouseEvent) => {
+    setInitialPosition({ x, y });
+    onDragStart(e);
+  }, [setInitialPosition, onDragStart, x, y]);
 
   return (
     <div
       className={[styles.patch, className].join(' ')}
-      onMouseDown={onDragStart}
+      onMouseDown={onMouseDown}
       role="button"
       style={style}
       tabIndex={order}

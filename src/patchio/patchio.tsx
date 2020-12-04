@@ -2,6 +2,7 @@ import React, {
   ReactElement, useCallback, useMemo, useState,
 } from 'react';
 import Patch from '../patch';
+import type IPosition from '../interfaces/IPosition';
 
 import styles from './styles.module.scss';
 
@@ -26,7 +27,7 @@ const Patchio = ({ className }: PatchioProps): ReactElement => {
     },
   });
 
-  const onPatchDrag = useCallback((patchId: string, x: number, y: number) => {
+  const onPatchDrag = useCallback((patchId: string, delta: IPosition) => {
     if (!patchData[patchId]) {
       return;
     }
@@ -35,8 +36,7 @@ const Patchio = ({ className }: PatchioProps): ReactElement => {
       ...patchData,
       [patchId]: {
         ...patchData[patchId],
-        x,
-        y,
+        ...delta,
       },
     });
   }, []);

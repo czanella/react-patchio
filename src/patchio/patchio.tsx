@@ -10,23 +10,38 @@ interface PatchioProps {
   className?: string,
 }
 
-interface PatchData {
+interface PatchClasses {
   [id: string]: {
     name: string,
+  },
+}
+
+interface PatchData {
+  [id: string]: {
+    patchClass: string,
     x: number,
     y: number,
   },
 }
 
 const Patchio = ({ className }: PatchioProps): ReactElement => {
+  const patchClasses: PatchClasses = {
+    multiply: {
+      name: 'Multiply',
+    },
+    add: {
+      name: 'Add',
+    },
+  };
+
   const [patchData, setPatchData] = useState<PatchData>({
     1: {
-      name: 'Multiply',
+      patchClass: 'multiply',
       x: 30,
       y: 20,
     },
     2: {
-      name: 'Add',
+      patchClass: 'add',
       x: 90,
       y: 90,
     },
@@ -47,10 +62,10 @@ const Patchio = ({ className }: PatchioProps): ReactElement => {
   }, [patchData, setPatchData]);
 
   const patches = useMemo(() => Object
-    .entries(patchData).map(([key, { name, x, y }], i) => (
+    .entries(patchData).map(([key, { patchClass, x, y }], i) => (
       <Patch
         key={key}
-        name={name}
+        name={patchClasses[patchClass].name}
         onDrag={onPatchDrag}
         order={i}
         patchId={key}

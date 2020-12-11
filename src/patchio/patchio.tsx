@@ -3,31 +3,27 @@ import React, {
 } from 'react';
 import Patch from '../patch';
 import type IPosition from '../interfaces/IPosition';
+import type {
+  PatchioProps,
+  PatchClasses,
+  PatchData,
+} from './types';
+import { PatchioInputType } from './types';
 
 import styles from './styles.module.scss';
-
-interface PatchioProps {
-  className?: string,
-}
-
-interface PatchClasses {
-  [id: string]: {
-    name: string,
-  },
-}
-
-interface PatchData {
-  [id: string]: {
-    patchClass: string,
-    x: number,
-    y: number,
-  },
-}
 
 const Patchio = ({ className }: PatchioProps): ReactElement => {
   const patchClasses: PatchClasses = {
     multiply: {
       name: 'Multiply',
+      inputs: [
+        {
+          name: 'a',
+          type: PatchioInputType.String,
+          field: true,
+          slot: false,
+        },
+      ],
     },
     add: {
       name: 'Add',

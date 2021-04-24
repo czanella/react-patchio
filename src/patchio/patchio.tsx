@@ -1,5 +1,5 @@
 import React, {
-  ReactElement, useCallback, useMemo, useState,
+  useCallback, useMemo, useState,
 } from 'react';
 import Patch from '../patch';
 import type IPosition from '../interfaces/IPosition';
@@ -12,7 +12,7 @@ import { PatchioInputType } from './types';
 
 import styles from './styles.module.scss';
 
-const Patchio = ({ className }: PatchioProps): ReactElement => {
+const Patchio = ({ className }: PatchioProps) => {
   const patchClasses: PatchClasses = {
     multiply: {
       name: 'Multiply',

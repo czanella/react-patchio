@@ -1,6 +1,4 @@
-import {
-  MouseEvent as ReactMouseEvent, useCallback, useEffect, useState,
-} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type IPosition from '../interfaces/IPosition';
 
 interface DragCallback {
@@ -8,13 +6,13 @@ interface DragCallback {
 }
 
 interface DragEvent {
-  (e: ReactMouseEvent): void,
+  (e: React.MouseEvent): void,
 }
 
 function useDrag(dragCallback: DragCallback): DragEvent {
   const [dragPosition, setDragPosition] = useState<IPosition | null>(null);
 
-  const onDragStart = useCallback<DragEvent>((e: ReactMouseEvent): void => {
+  const onDragStart = useCallback<DragEvent>((e: React.MouseEvent): void => {
     setDragPosition({
       x: e.screenX,
       y: e.screenY,

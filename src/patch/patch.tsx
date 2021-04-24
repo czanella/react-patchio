@@ -1,6 +1,4 @@
-import React, {
-  MouseEvent as ReactMouseEvent, ReactElement, useCallback, useState,
-} from 'react';
+import React, { useCallback, useState } from 'react';
 import useDrag from '../hooks/useDrag';
 import type IPosition from '../interfaces/IPosition';
 
@@ -16,7 +14,7 @@ interface PatchProps extends IPosition {
 
 const Patch = ({
   className, name, onDrag, order, patchId, x, y,
-}: PatchProps): ReactElement => {
+}: PatchProps) => {
   const style = { transform: `translate(${x}px, ${y}px` };
   const [initialPosition, setInitialPosition] = useState<IPosition>({ x, y });
 
@@ -27,7 +25,7 @@ const Patch = ({
     }),
   );
 
-  const onMouseDown = useCallback((e: ReactMouseEvent) => {
+  const onMouseDown = useCallback((e: React.MouseEvent) => {
     setInitialPosition({ x, y });
     onDragStart(e);
   }, [setInitialPosition, onDragStart, x, y]);
